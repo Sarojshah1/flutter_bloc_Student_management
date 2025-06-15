@@ -19,8 +19,10 @@ class StudentRemoteDatasource implements IStudentDataSource {
         data: model.toJson(),
       );
 
-      if (response.statusCode != 201) {
-        throw Exception("Failed to register student: ${response.statusCode} ${response.statusMessage}");
+      print(response);
+
+      if (response.statusCode == 201) {
+        return;
       }
     } on DioException catch (e) {
       throw Exception('Failed to register student: ${e.response?.data ?? e.message}');
@@ -36,8 +38,9 @@ class StudentRemoteDatasource implements IStudentDataSource {
         "username": username,
         "password": password,
       });
+      print(response.data['token']);
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data['token'];
       } else {
         throw Exception("Login failed: ${response.statusCode} ${response.statusMessage}");

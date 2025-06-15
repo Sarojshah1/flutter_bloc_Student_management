@@ -69,6 +69,7 @@ class LoginViewModel extends Bloc<LoginEvent, LoginState> {
       LoginParams(username: event.username, password: event.password),
     );
 
+    print(result);
     result.fold(
       (failure) {
         // Handle failure case

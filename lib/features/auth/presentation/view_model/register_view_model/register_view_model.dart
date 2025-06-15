@@ -61,6 +61,7 @@ class RegisterViewModel extends Bloc<RegisterEvent, RegisterState> {
 
     result.fold(
       (l) {
+        print(l);
         emit(state.copyWith(isLoading: false, isSuccess: false));
         showMySnackBar(
           context: event.context,
@@ -69,6 +70,7 @@ class RegisterViewModel extends Bloc<RegisterEvent, RegisterState> {
         );
       },
       (r) {
+        print("success");
         emit(state.copyWith(isLoading: false, isSuccess: true));
         showMySnackBar(
           context: event.context,
