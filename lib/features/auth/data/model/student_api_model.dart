@@ -13,7 +13,7 @@ class AuthApiModel extends Equatable {
   final String fname;
   final String lname;
   final String? image;
-  final String phone;
+  final String? phone;
   final BatchApiModel batch;
   final List<CourseApiModel> course;
   final String username;
@@ -24,7 +24,7 @@ class AuthApiModel extends Equatable {
     required this.fname,
     required this.lname,
     required this.image,
-    required this.phone,
+     this.phone,
     required this.batch,
     required this.course,
     required this.username,

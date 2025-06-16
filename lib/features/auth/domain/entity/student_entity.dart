@@ -7,7 +7,7 @@ class StudentEntity extends Equatable {
   final String fName;
   final String lName;
   final String? image;
-  final String phone;
+  final String? phone;
   final BatchEntity batch;
   final List<CourseEntity> courses;
   final String username;
@@ -18,7 +18,7 @@ class StudentEntity extends Equatable {
     required this.fName,
     required this.lName,
     this.image,
-    required this.phone,
+    this.phone,
     required this.batch,
     required this.courses,
     required this.username,

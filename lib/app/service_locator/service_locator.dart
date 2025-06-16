@@ -31,6 +31,14 @@ import 'package:student_management/features/course/presentation/view_model/cours
 import 'package:student_management/features/home/presentation/view_model/home_view_model.dart';
 import 'package:student_management/features/splash/presentation/view_model/splash_view_model.dart';
 
+import '../../features/students/data/data_source/i_student_data_source.dart';
+import '../../features/students/data/data_source/remote_datasource/students_data_source.dart';
+import '../../features/students/data/repository_impl/student_repository_impl.dart';
+import '../../features/students/domain/repository/i_student_repository.dart';
+import '../../features/students/domain/usecases/get_student_by_course.dart';
+import '../../features/students/domain/usecases/get_students_by_batch.dart';
+import '../../features/students/presentation/view_model/students_bloc.dart';
+
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
@@ -42,6 +50,7 @@ Future<void> initDependencies() async {
   await _initAuthModule();
   await _initHomeModule();
   await _initSplashModule();
+  await _initStudentsModule();
 }
 
 Future<void> _initHiveService() async {
@@ -212,4 +221,32 @@ Future<void> _initHomeModule() async {
 
 Future<void> _initSplashModule() async {
   serviceLocator.registerFactory(() => SplashViewModel());
+}
+Future<void> _initStudentsModule() async {
+  // Data Source (remote only as example)
+  serviceLocator.registerLazySingleton<IStudentDataSource>(
+        () => StudentRemoteDataSource(apiservice: serviceLocator<ApiService>()),
+  );
+
+  // Repository Implementation
+  serviceLocator.registerLazySingleton<IStudentRepository>(
+        () => StudentRepositoryImpl(serviceLocator<IStudentDataSource>()),
+  );
+
+  // Usecases
+  serviceLocator.registerFactory(
+        () => GetStudentsByBatch(studentRepository: serviceLocator<IStudentRepository>()),
+  );
+
+  serviceLocator.registerFactory(
+        () => GetStudentsByCourse(studentRepository: serviceLocator<IStudentRepository>()),
+  );
+
+  // Bloc
+  serviceLocator.registerFactory(
+        () => StudentsBloc(
+      getStudentsByBatch: serviceLocator<GetStudentsByBatch>(),
+      getStudentsByCourse: serviceLocator<GetStudentsByCourse>(),
+    ),
+  );
 }

@@ -19,7 +19,7 @@ class StudentHiveModel extends Equatable {
   @HiveField(3)
   final String? image;
   @HiveField(4)
-  final String phone;
+  final String? phone;
   @HiveField(5)
   final BatchHiveModel batch;
   @HiveField(6)
@@ -34,7 +34,7 @@ class StudentHiveModel extends Equatable {
     required this.fName,
     required this.lName,
     this.image,
-    required this.phone,
+    this.phone,
     required this.batch,
     required this.courses,
     required this.username,

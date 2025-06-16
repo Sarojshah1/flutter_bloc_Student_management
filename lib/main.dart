@@ -8,6 +8,7 @@ void main() async {
   await initDependencies();
   // init Hive service
   await HiveService().init();
+
   // Delete database
   // await HiveService().clearAll();
   runApp(App());

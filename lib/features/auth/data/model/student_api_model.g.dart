@@ -11,7 +11,7 @@ AuthApiModel _$AuthApiModelFromJson(Map<String, dynamic> json) => AuthApiModel(
       fname: json['fname'] as String,
       lname: json['lname'] as String,
       image: json['image'] as String?,
-      phone: json['phone'] as String,
+      phone: json['phone'] as String?,
       batch: BatchApiModel.fromJson(json['batch'] as Map<String, dynamic>),
       course: (json['course'] as List<dynamic>)
           .map((e) => CourseApiModel.fromJson(e as Map<String, dynamic>))
@@ -27,8 +27,8 @@ Map<String, dynamic> _$AuthApiModelToJson(AuthApiModel instance) =>
       'lname': instance.lname,
       'image': instance.image,
       'phone': instance.phone,
-      'batch': instance.batch.batchId,
-      'course': instance.course.map((e)=>e.courseId).toList(),
+      'batch': instance.batch,
+      'course': instance.course,
       'username': instance.username,
       'password': instance.password,
     };

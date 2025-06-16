@@ -21,7 +21,7 @@ class StudentHiveModelAdapter extends TypeAdapter<StudentHiveModel> {
       fName: fields[1] as String,
       lName: fields[2] as String,
       image: fields[3] as String?,
-      phone: fields[4] as String,
+      phone: fields[4] as String?,
       batch: fields[5] as BatchHiveModel,
       courses: (fields[6] as List).cast<CourseHiveModel>(),
       username: fields[7] as String,
