@@ -58,13 +58,19 @@ class ShowStudents extends StatelessWidget {
               itemBuilder: (context, index) {
                 final StudentEntity student = students[index];
                 final imageUrl = student.image != null && student.image!.isNotEmpty
-                    ? "${ApiEndpoints.imageUrl}/${student.image}"
+                    ? "http://10.0.2.2:3000/uploads/${student.image}"
                     : 'https://via.placeholder.com/150';
+                print(imageUrl);
 
                 return ListTile(
                   leading: CircleAvatar(
-                    radius: 25,
-                    backgroundImage: CachedNetworkImageProvider(imageUrl),
+                    radius: 30,
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+
+                    ),
                   ),
                   title: Text("${student.fName} ${student.lName}"),
                   subtitle: Column(
