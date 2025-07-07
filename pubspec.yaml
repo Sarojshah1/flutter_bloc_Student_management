@@ -33,6 +33,7 @@ dependencies:
   permission_handler: ^12.0.0+1
   json_serializable: ^6.9.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,6 +41,8 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.4.15
   hive_generator: ^2.0.1
+  mocktail:
+  bloc_test:
 
 # The following section is specific to Flutter packages.
 flutter:

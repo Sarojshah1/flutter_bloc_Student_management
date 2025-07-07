@@ -8,4 +8,8 @@ class CourseEntity extends Equatable {
 
   @override
   List<Object?> get props => [courseId, courseName];
+
+  factory CourseEntity.empty() {
+    return const CourseEntity(courseId: null, courseName: '');
+  }
 }

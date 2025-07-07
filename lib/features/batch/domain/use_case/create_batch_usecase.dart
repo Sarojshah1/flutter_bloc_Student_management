@@ -15,6 +15,8 @@ class CreateBatchParams extends Equatable {
 
   @override
   List<Object?> get props => [batchName];
+
+  static empty() {}
 }
 
 class CreateBatchUsecase implements UsecaseWithParams<void, CreateBatchParams> {

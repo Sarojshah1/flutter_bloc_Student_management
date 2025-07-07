@@ -12,6 +12,7 @@ class StudentRemoteDatasource implements IStudentDataSource {
 
   @override
   Future<void> registerStudent(StudentEntity studentData) async {
+    print(studentData);
     try {
       final model = AuthApiModel.fromEntity(studentData);
       final response = await _apiService.dio.post(
